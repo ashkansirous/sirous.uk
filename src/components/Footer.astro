@@ -1,0 +1,42 @@
+---
+import { siteConfig } from '../config';
+---
+
+<footer>
+  <div class="copy">sirous<span class="accent">.uk</span> &nbsp;·&nbsp; © {siteConfig.copyrightYear}</div>
+  <a class="built-by" href={siteConfig.links.personalSite}>
+    Built by Ashkan Sirous <span class="accent">↗</span>
+  </a>
+</footer>
+
+<style>
+  footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding: 30px 0 44px;
+    margin-top: 36px;
+    border-top: 1px solid var(--color-hairline);
+  }
+
+  .copy {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-faint);
+  }
+
+  .built-by {
+    text-decoration: none;
+    color: var(--color-ink);
+    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .accent {
+    color: var(--color-accent);
+  }
+</style>

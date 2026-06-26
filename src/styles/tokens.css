@@ -1,0 +1,81 @@
+/*
+ * Design tokens for sirous.uk — single source of truth for colour, type and radii.
+ * Values come straight from the design handoff (design_handoff_sirous_portal/README.md).
+ * The accent is intentionally tweakable; keep it aligned with ashkan.sirous.uk's brand.
+ */
+:root {
+  /* Surfaces & paper */
+  --color-paper: #f4efe7;
+  --color-card-surface: #fcfaf6;
+  --color-chip-surface: #ffffff;
+
+  /* Text */
+  --color-ink: #1a1613;
+  --color-body: #5d544a;
+  --color-muted: #6f665b;
+  --color-faint: #9a9082;
+  --color-placeholder: #a99f90;
+  --color-placeholder-index: #b6ac9d;
+
+  /* Lines */
+  --color-hairline: #e4dcd0;
+  --color-hairline-2: #ede6db;
+  --color-dashed: #d2c8b9;
+  --color-rule: #c9bfb1;
+
+  /* Accent (brand navy — tweakable; alternates: #1F6FEB, #D8431A, #1F8A5B) */
+  --color-accent: #102a43;
+  --color-accent-text: #f8efe9;
+
+  /* Live status */
+  --color-live: #1f8a5b;
+  --color-live-pill-bg: #1f8a5b14;
+  --color-live-pill-text: #1f7a50;
+
+  /* Type families */
+  --font-display: 'Bricolage Grotesque', sans-serif;
+  --font-body: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Space Mono', monospace;
+
+  /* Radii */
+  --radius-card: 18px;
+  --radius-pill: 999px;
+
+  /* Layout */
+  --container-max: 1180px;
+  --container-pad: clamp(20px, 4vw, 40px);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  /* Subtle dot grid — ink at ~3% alpha */
+  background-image: radial-gradient(#1a161308 1px, transparent 1px);
+  background-size: 22px 22px;
+  min-height: 100vh;
+}
+
+::selection {
+  background: var(--color-ink);
+  color: var(--color-paper);
+}
+
+@keyframes pulseDot {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.6);
+  }
+}

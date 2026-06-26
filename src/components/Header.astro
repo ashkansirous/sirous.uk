@@ -1,0 +1,60 @@
+---
+import { siteConfig } from '../config';
+---
+
+<header>
+  <a class="wordmark" href="#top">sirous<span class="accent">.uk</span></a>
+  <nav>
+    <a class="nav-link products" href="#products">PRODUCTS</a>
+    <a class="nav-link ashkan" href={siteConfig.links.personalSite}>
+      ASHKAN <span class="accent">↗</span>
+    </a>
+  </nav>
+</header>
+
+<style>
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 26px 0;
+    border-bottom: 1px solid var(--color-hairline);
+  }
+
+  .wordmark {
+    text-decoration: none;
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 21px;
+    letter-spacing: -0.02em;
+  }
+
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    letter-spacing: 0.04em;
+  }
+
+  .nav-link {
+    text-decoration: none;
+  }
+
+  .products {
+    color: var(--color-muted);
+  }
+
+  .ashkan {
+    color: var(--color-ink);
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .accent {
+    color: var(--color-accent);
+  }
+</style>

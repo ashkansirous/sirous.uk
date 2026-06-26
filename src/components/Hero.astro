@@ -1,0 +1,127 @@
+---
+import MakerCard from './MakerCard.astro';
+---
+
+<section id="top" class="hero">
+  <div class="main">
+    <div class="eyebrow">
+      <span>Independent software</span>
+      <span class="rule"></span>
+      <span>Built &amp; shipped in the UK</span>
+    </div>
+
+    <h1>A growing home for the software I build<span class="accent">.</span></h1>
+
+    <p class="lead">
+      sirous.uk is where my projects live — independent, useful, and made one at a
+      time. It starts with a single tool, and grows as each new one ships.
+    </p>
+
+    <div class="chips">
+      <span class="chip">
+        <span class="dot dot-live"></span>1 live
+      </span>
+      <span class="chip muted">
+        <span class="dot dot-hollow"></span>more in the works
+      </span>
+    </div>
+  </div>
+
+  <MakerCard />
+</section>
+
+<style>
+  .hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 280px;
+    gap: clamp(28px, 5vw, 64px);
+    align-items: end;
+    padding: clamp(56px, 9vw, 108px) 0 clamp(40px, 6vw, 72px);
+  }
+
+  .eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--color-muted);
+  }
+
+  .rule {
+    flex: 0 0 28px;
+    height: 1px;
+    background: var(--color-rule);
+  }
+
+  h1 {
+    margin: 22px 0 0;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(40px, 6.6vw, 88px);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+    max-width: 15ch;
+  }
+
+  .lead {
+    margin: 28px 0 0;
+    font-size: clamp(16px, 1.6vw, 20px);
+    line-height: 1.55;
+    color: var(--color-body);
+    max-width: 52ch;
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 32px;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 14px;
+    background: var(--color-chip-surface);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-pill);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-ink);
+  }
+
+  .chip.muted {
+    color: var(--color-muted);
+  }
+
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+  }
+
+  .dot-live {
+    background: var(--color-live);
+    box-shadow: 0 0 0 3px #1f8a5b22;
+  }
+
+  .dot-hollow {
+    border: 1.5px solid var(--color-rule);
+  }
+
+  .accent {
+    color: var(--color-accent);
+  }
+
+  /* Narrow viewports: maker card drops below the hero text. */
+  @media (max-width: 760px) {
+    .hero {
+      grid-template-columns: 1fr;
+      align-items: stretch;
+    }
+  }
+</style>

@@ -1,0 +1,18 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import Products from '../components/Products.astro';
+import Footer from '../components/Footer.astro';
+
+const title = 'sirous.uk — software built & shipped by Ashkan Sirous';
+const description =
+  'A growing home for the independent software Ashkan Sirous builds — useful desktop and web tools, made one at a time in the UK.';
+---
+
+<Base title={title} description={description}>
+  <Header />
+  <Hero />
+  <Products />
+  <Footer />
+</Base>
