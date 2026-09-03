@@ -1,5 +1,9 @@
 ---
 import MakerCard from './MakerCard.astro';
+import { flagship, upcoming } from '../data/products';
+
+const liveCount = [flagship, ...upcoming].filter((p) => p.status === 'live').length;
+const hasMoreInTheWorks = upcoming.some((p) => p.status !== 'live');
 ---
 
 <section id="top" class="hero">
@@ -19,11 +23,16 @@ import MakerCard from './MakerCard.astro';
 
     <div class="chips">
       <span class="chip">
-        <span class="dot dot-live"></span>1 live
+        <span class="dot dot-live"></span>{liveCount} live
       </span>
-      <span class="chip muted">
-        <span class="dot dot-hollow"></span>more in the works
-      </span>
+      {
+        hasMoreInTheWorks && (
+          <span class="chip muted">
+            <span class="dot dot-hollow" />
+            more in the works
+          </span>
+        )
+      }
     </div>
   </div>
 
