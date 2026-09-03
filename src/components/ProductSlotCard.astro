@@ -1,0 +1,157 @@
+---
+import type { Product } from '../data/products';
+
+interface Props {
+  product: Product;
+}
+
+const { product } = Astro.props;
+const isLive = product.status === 'live';
+---
+
+{
+  isLive ? (
+    <a class="slot slot--live" href={product.url}>
+      <div class="meta">
+        <span class="live-pill">
+          <span class="live-dot" />
+          LIVE
+        </span>
+        <span class="index">{product.index}</span>
+      </div>
+      <div class="bottom">
+        <div class="title title--live">{product.name}</div>
+        <div class="subline subline--live">{product.description}</div>
+        {product.displayUrl && (
+          <div class="url">
+            {product.displayUrl}
+            <span class="arrow" aria-hidden="true">
+              →
+            </span>
+          </div>
+        )}
+      </div>
+    </a>
+  ) : (
+    <div class="slot">
+      <div class="meta">
+        <span class="pill">{product.slotLabel}</span>
+        <span class="index">{product.index}</span>
+      </div>
+      <div class="bottom">
+        <div class="title">{product.name}</div>
+        <div class="subline">{product.description}</div>
+      </div>
+    </div>
+  )
+}
+
+<style>
+  .slot {
+    border: 1.5px dashed var(--color-dashed);
+    border-radius: var(--radius-card);
+    min-height: 188px;
+    padding: 26px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: transparent;
+  }
+
+  .slot--live {
+    display: flex;
+    border: 1px solid var(--color-hairline);
+    background: var(--color-card-surface);
+    text-decoration: none;
+    color: inherit;
+    transition:
+      transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+      box-shadow 0.35s ease,
+      border-color 0.35s ease;
+  }
+
+  .slot--live:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 22px 42px -26px rgba(26, 22, 19, 0.4);
+    border-color: var(--color-ink);
+  }
+
+  .meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .pill {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--color-faint);
+    border: 1px solid var(--color-dashed);
+    border-radius: var(--radius-pill);
+    padding: 5px 11px;
+  }
+
+  .live-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 5px 11px;
+    border-radius: var(--radius-pill);
+    background: var(--color-live-pill-bg);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--color-live-pill-text);
+  }
+
+  .live-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--color-live);
+  }
+
+  .index {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-placeholder-index);
+  }
+
+  .title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 23px;
+    letter-spacing: -0.01em;
+    color: var(--color-placeholder);
+  }
+
+  .title--live {
+    color: var(--color-ink);
+  }
+
+  .subline {
+    margin-top: 6px;
+    font-size: 14px;
+    color: var(--color-placeholder);
+  }
+
+  .subline--live {
+    color: var(--color-body);
+    line-height: 1.5;
+  }
+
+  .url {
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    color: var(--color-muted);
+  }
+
+  .arrow {
+    color: var(--color-ink);
+  }
+</style>
