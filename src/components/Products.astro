@@ -1,6 +1,6 @@
 ---
 import ProductCard from './ProductCard.astro';
-import UpcomingCard from './UpcomingCard.astro';
+import ProductSlotCard from './ProductSlotCard.astro';
 import { flagship, upcoming } from '../data/products';
 import { siteConfig } from '../config';
 ---
@@ -17,7 +17,7 @@ import { siteConfig } from '../config';
     siteConfig.showUpcoming && (
       <div class="upcoming-grid">
         {upcoming.map((product) => (
-          <UpcomingCard product={product} />
+          <ProductSlotCard product={product} />
         ))}
       </div>
     )
