@@ -30,7 +30,7 @@ export const flagship: Product = {
   status: 'live',
   name: 'Read the Stupid Text',
   description:
-    'Select or copy any text on Windows and it reads it aloud in a natural neural voice, at whatever speed you like — fully offline. Also reads uploaded .txt and .pdf files, with a tray control panel, ten voices, and an activity log for when a read misbehaves.',
+    'Select or copy any text on Windows and it reads it aloud in a natural neural voice, at whatever speed you like — fully offline. Also reads uploaded .txt, .pdf and .docx files, with a tray control panel, ten voices, and an activity log for when a read misbehaves. An Android app is in testing: point the camera at a page and it reads it to you.',
   url: 'https://readthestupidtext.sirous.uk/',
   displayUrl: 'readthestupidtext.sirous.uk',
 };
@@ -41,7 +41,7 @@ export const upcoming: Product[] = [
     status: 'live',
     name: 'Lets Call Mom',
     description:
-      'A private, five-person video calling app built for family calls over low-bandwidth and unreliable networks — WebRTC over Cloudflare, with media on a single TLS relay on port 443. Invite-only, built for one family.',
+      'A private video calling app built for family calls over low-bandwidth and unreliable networks — WebRTC over Cloudflare, with media on a single TLS relay on port 443. Web, Android and Linux apps (iPhone in TestFlight) that ring like a phone, with messaging and live Farsi⇄English subtitles. Invite-only, built for one family.',
     url: 'https://talk.sirous.uk/',
     displayUrl: 'talk.sirous.uk',
   },
