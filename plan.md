@@ -28,6 +28,7 @@ production Astro site and ship it to GitHub Pages on the apex domain `sirous.uk`
 - [x] **5. Slice 5 — product pages and screenshots (2026-10-22)** — `products` data model
       (three products + `reservedSlot`), screenshot cards on the home page, one page per product at
       `/<slug>/` (`src/pages/[slug].astro`, `components/product/`), testing/panel tokens, og:image.
+      Added `print-the-damn-book` as the fourth product (landscape screenshot via `device--wide`).
 
 ## Out of scope
 

@@ -11,11 +11,17 @@ interface Props {
 const { product, variant } = Astro.props;
 const fit = product.screenshotFit ?? 'bleed';
 const isCard = variant === 'card';
-const widths = isCard ? [320, 480, 640] : [360, 540, 720, 1080];
-const sizes = isCard ? '(max-width: 760px) 70vw, 300px' : '(max-width: 760px) 90vw, 360px';
+const isWide = product.screenshot.width > product.screenshot.height;
+const widths = isWide ? [480, 720, 1080] : isCard ? [320, 480, 640] : [360, 540, 720, 1080];
+const sizes = getSizes(isCard, isWide);
+
+function getSizes(card: boolean, wide: boolean): string {
+  if (wide) return card ? '(max-width: 760px) 90vw, 420px' : '(max-width: 760px) 90vw, 520px';
+  return card ? '(max-width: 760px) 70vw, 300px' : '(max-width: 760px) 90vw, 360px';
+}
 ---
 
-<div class:list={['device', `device--${variant}`, `device--${fit}`]}>
+<div class:list={['device', `device--${variant}`, `device--${fit}`, { 'device--wide': isWide }]}>
   <Image
     src={product.screenshot}
     alt={product.screenshotAlt}
@@ -56,12 +62,21 @@ const sizes = isCard ? '(max-width: 760px) 70vw, 300px' : '(max-width: 760px) 90
     width: min(62%, 240px);
   }
 
+  /* A landscape window needs more width than a phone-shaped one to stay legible. */
+  .device--card.device--float.device--wide {
+    width: min(88%, 420px);
+  }
+
   /* Page showcase: sits in normal flow, centred by the flex panel around it. */
   .device--page {
     position: relative;
     left: auto;
     width: min(82%, 360px);
     margin: auto;
+  }
+
+  .device--page.device--wide {
+    width: min(92%, 520px);
   }
 
   @media (max-width: 760px) {
@@ -73,6 +88,10 @@ const sizes = isCard ? '(max-width: 760px) 70vw, 300px' : '(max-width: 760px) 90
     .device--card.device--float {
       top: 48px;
       width: min(56%, 190px);
+    }
+
+    .device--card.device--float.device--wide {
+      width: min(88%, 420px);
     }
   }
 </style>

@@ -1,8 +1,8 @@
 # sirous.uk
 
 The portal / landing page for the software [Ashkan Sirous](https://ashkan.sirous.uk) builds.
-Three products today: **Read The Stupid Text** and **Lets Call Mom** are live, **Dino Reader** is in
-testing. Each has its own page at `/<slug>/`; screenshots live in `src/assets/products/`.
+Four products today: **Read The Stupid Text** and **Lets Call Mom** are live, **Dino Reader** and
+**Print the Damn Book** are in testing. Each has its own page at `/<slug>/`; screenshots live in `src/assets/products/`.
 
 Built with [Astro](https://astro.build) (static output) — plain HTML + scoped CSS, no UI
 framework. Recreated pixel-faithfully from the design handoff in
