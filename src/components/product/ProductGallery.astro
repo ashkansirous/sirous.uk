@@ -1,0 +1,84 @@
+---
+import { Image } from 'astro:assets';
+import type { GalleryStep } from '../../data/products';
+import SectionHeader from '../SectionHeader.astro';
+
+interface Props {
+  steps: GalleryStep[];
+  title?: string;
+}
+
+const DEFAULT_TITLE = 'Steps';
+const IMAGE_WIDTHS = [480, 720, 960];
+const IMAGE_SIZES = '(max-width: 760px) 90vw, 360px';
+const { steps, title = DEFAULT_TITLE } = Astro.props;
+
+function stepNumber(index: number): string {
+  return String(index + 1).padStart(2, '0');
+}
+---
+
+<section class="gallery">
+  <SectionHeader title={title} label="/ steps" />
+  <div class="grid">
+    {
+      steps.map((step, index) => (
+        <article class="card">
+          <Image src={step.image} alt={step.alt} widths={IMAGE_WIDTHS} sizes={IMAGE_SIZES} loading="lazy" />
+          <div class="kicker">{stepNumber(index)}</div>
+          <h3>{step.title}</h3>
+          <p>{step.body}</p>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .card {
+    min-width: 0;
+  }
+
+  .card img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius-card);
+    border: 1px solid var(--color-hairline);
+  }
+
+  .kicker {
+    margin-top: 14px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    color: var(--color-accent);
+  }
+
+  h3 {
+    margin: 6px 0 0;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 1.25;
+  }
+
+  p {
+    margin: 8px 0 0;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--color-body);
+  }
+
+  @media (max-width: 760px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

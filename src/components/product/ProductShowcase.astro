@@ -1,6 +1,7 @@
 ---
 import type { Product } from '../../data/products';
 import ProductDevice from '../ProductDevice.astro';
+import ProductGallery from './ProductGallery.astro';
 import ProductHighlights from './ProductHighlights.astro';
 import ProductFeatures from './ProductFeatures.astro';
 import ProductPlatforms from './ProductPlatforms.astro';
@@ -12,15 +13,17 @@ interface Props {
 
 const { product } = Astro.props;
 const isWide = product.screenshot.width > product.screenshot.height;
+const isArt = product.screenshotFit === 'art';
 ---
 
 <section class="showcase">
-  <div class:list={['panel', { 'panel--wide': isWide }]} style={`background: var(--color-panel-${product.panel})`}>
+  <div class:list={['panel', { 'panel--wide': isWide, 'panel--art': isArt }]} style={`background: var(--color-panel-${product.panel})`}>
     <ProductDevice product={product} variant="page" />
   </div>
 
   <div class="details">
     {product.highlights && <ProductHighlights highlights={product.highlights} title={product.highlightsTitle} />}
+    {product.gallery && <ProductGallery steps={product.gallery} title={product.galleryTitle} />}
     <ProductFeatures features={product.features} />
     <ProductPlatforms platforms={product.platforms} />
     <ProductStack stack={product.stack} />
@@ -49,6 +52,11 @@ const isWide = product.screenshot.width > product.screenshot.height;
     min-height: 440px;
   }
 
+  .panel--art {
+    min-height: 420px;
+    padding: 0;
+  }
+
   .details {
     display: flex;
     flex-direction: column;
@@ -68,6 +76,10 @@ const isWide = product.screenshot.width > product.screenshot.height;
 
     .panel--wide {
       min-height: 320px;
+    }
+
+    .panel--art {
+      min-height: 360px;
     }
   }
 </style>

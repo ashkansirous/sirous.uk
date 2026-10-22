@@ -14,7 +14,7 @@ handoff as the source of truth for layout, colour, type and copy.
 - **Products are data, not markup.** Add/grow the catalogue in `src/data/products.ts`; toggle the
   reserved slot with `showUpcoming` in `src/config.ts`. Don't hand-write new card markup.
 - **Product pages are `src/pages/[slug].astro`** built from `products` in `src/data/products.ts`;
-  screenshots live in `src/assets/products/<slug>.png` and are referenced through `astro:assets`,
+  screenshots live in `src/assets/products/<slug>.png` or `.webp` (plus `<slug>-step-N.webp` for a gallery; `screenshotFit` is `bleed | float | art`) and are referenced through `astro:assets`,
   never `public/`.
 - **The accent `#102a43` mirrors `ashkan.sirous.uk`'s brand** — keep them aligned.
 

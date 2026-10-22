@@ -9,11 +9,14 @@
 import rtstShot from '../assets/products/read-the-stupid-text.png';
 import lcmShot from '../assets/products/lets-call-mom.png';
 import dinoShot from '../assets/products/dino-reader.png';
-import bookShot from '../assets/products/print-the-damn-book.png';
+import bookShot from '../assets/products/print-the-damn-book.webp';
+import bookStep1 from '../assets/products/print-the-damn-book-step-1.webp';
+import bookStep2 from '../assets/products/print-the-damn-book-step-2.webp';
+import bookStep3 from '../assets/products/print-the-damn-book-step-3.webp';
 
 export type ProductStatus = 'live' | 'testing' | 'reserved';
 export type PlatformStatus = 'live' | 'testing';
-export type ScreenshotFit = 'bleed' | 'float';
+export type ScreenshotFit = 'bleed' | 'float' | 'art';
 export type PanelKey = 'rtst' | 'lcm' | 'dino' | 'book';
 
 export interface Platform {
@@ -38,6 +41,13 @@ export interface ProductLink {
   primary?: boolean;
 }
 
+export interface GalleryStep {
+  image: ImageMetadata;
+  alt: string;
+  title: string;
+  body: string;
+}
+
 export interface Product {
   slug: string;
   /** Two-digit index shown in the card meta row, e.g. "01". */
@@ -51,7 +61,7 @@ export interface Product {
   displayUrl: string;
   screenshot: ImageMetadata;
   screenshotAlt: string;
-  /** `bleed` (default) runs off the panel's bottom edge; `float` sits inside it. */
+  /** `bleed` (default) runs off the panel's bottom edge; `float` sits inside it; `art` fills the panel edge to edge. */
   screenshotFit?: ScreenshotFit;
   /** Picks the panel colour token. */
   panel: PanelKey;
@@ -60,6 +70,10 @@ export interface Product {
   highlights?: Highlight[];
   /** Heading above `highlights` on the product page; defaults to "Highlights". */
   highlightsTitle?: string;
+  /** Optional step-by-step app shots shown on the product page. */
+  gallery?: GalleryStep[];
+  /** Heading above `gallery` on the product page. */
+  galleryTitle?: string;
   stack: string[];
   links: ProductLink[];
   /** Short panel label on the home-page card; falls back to the status text. */
@@ -77,6 +91,8 @@ export interface ReservedSlot {
 
 const RTST_REPO = 'https://github.com/ashkansirous/ReadTheStupidText';
 const BOOK_REPO = 'https://github.com/ashkansirous/print-the-damn-book';
+const BOOK_SITE = 'https://print-the-damn-book.sirous.uk/';
+const BOOK_DOWNLOAD = `${BOOK_REPO}/releases/latest/download/PrintTheDamnBook.exe`;
 
 export const products: Product[] = [
   {
@@ -354,23 +370,23 @@ export const products: Product[] = [
     index: '04',
     status: 'testing',
     name: 'Print the Damn Book',
-    tagline: 'Print a home-made picture book without working out the page order yourself.',
+    tagline: 'Picture books, in the right order.',
     description:
-      'Give it a folder of page images named Cover, 1, 2 … Back cover. It arranges them as a saddle-stitch booklet, two pages per landscape sheet, double-sided, shows you every sheet front and back, and sends the whole thing to your duplex printer in one job. Fold the stack in the middle and the book reads in order.',
-    url: BOOK_REPO,
-    displayUrl: 'github.com/ashkansirous/print-the-damn-book',
+      'Drop a folder of page images. Print the Damn Book works out what goes where on every sheet, then prints the booklet double-sided. Free. Windows 10 and 11, 64-bit. A single .exe, nothing to install.',
+    url: BOOK_SITE,
+    displayUrl: 'print-the-damn-book.sirous.uk',
     screenshot: bookShot,
     screenshotAlt:
-      'The Print the Damn Book Windows app with a 12-page sample book loaded, showing the page list and a preview of the sheets.',
-    screenshotFit: 'float',
+      'Three picture-book pages fanned out: a cover reading Good Enough, a stadium scene and a closing page.',
+    screenshotFit: 'art',
     panel: 'book',
-    audience: 'For home-made picture books',
+    audience: 'Free Windows app',
     platforms: [
       {
         name: 'Windows',
         status: 'testing',
-        note: 'Single self-contained exe; first release coming',
-        url: BOOK_REPO,
+        note: 'Free, single .exe for Windows 10 and 11, 64-bit; first release coming.',
+        url: BOOK_SITE,
       },
     ],
     features: [
@@ -399,6 +415,24 @@ export const products: Product[] = [
         body: 'No network access, no accounts; settings stay in a local folder.',
       },
     ],
+    galleryTitle: 'Open, Check, Print',
+    gallery: [
+      {
+        image: bookStep1,
+        title: 'Drop a folder. Get a book.',
+        body: 'Name your pages Cover, 1, 2 … Back cover and it works out what goes where on every sheet.',
+      },
+      {
+        image: bookStep2,
+        title: 'See every sheet before you print.',
+        body: 'Front and back, exactly as they come out; fold the stack and it reads in order.',
+      },
+      {
+        image: bookStep3,
+        title: 'One job. Both sides. Done.',
+        body: 'Print a test sheet once to check the flip edge, then send the whole book.',
+      },
+    ].map((step) => ({ ...step, alt: `${step.title} ${step.body}` })),
     stack: [
       'C#',
       '.NET 10 (LTS)',
@@ -409,7 +443,9 @@ export const products: Product[] = [
       'GitHub Actions release build (single self-contained win-x64 exe)',
     ],
     links: [
-      { label: 'Source on GitHub', url: BOOK_REPO, primary: true },
+      { label: 'Visit site', url: BOOK_SITE, primary: true },
+      { label: 'Download for Windows', url: BOOK_DOWNLOAD },
+      { label: 'Source on GitHub', url: BOOK_REPO },
     ],
   },
 ];
