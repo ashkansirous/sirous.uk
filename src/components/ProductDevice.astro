@@ -1,0 +1,78 @@
+---
+import { Image } from 'astro:assets';
+import type { Product } from '../data/products';
+
+interface Props {
+  product: Product;
+  /** `card` = home-page card (tilted, may bleed); `page` = centred showcase. */
+  variant: 'card' | 'page';
+}
+
+const { product, variant } = Astro.props;
+const fit = product.screenshotFit ?? 'bleed';
+const isCard = variant === 'card';
+const widths = isCard ? [320, 480, 640] : [360, 540, 720, 1080];
+const sizes = isCard ? '(max-width: 760px) 70vw, 300px' : '(max-width: 760px) 90vw, 360px';
+---
+
+<div class:list={['device', `device--${variant}`, `device--${fit}`]}>
+  <Image
+    src={product.screenshot}
+    alt={product.screenshotAlt}
+    widths={widths}
+    sizes={sizes}
+    loading={isCard ? 'lazy' : 'eager'}
+  />
+</div>
+
+<style>
+  .device {
+    border-radius: var(--radius-device);
+    box-shadow: var(--shadow-device);
+    border: 1px solid var(--color-on-panel-edge);
+    overflow: hidden;
+  }
+
+  .device img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+
+  /* Anchored from the top so the label stays clear; the tall screenshot bleeds off the bottom. */
+  .device--card {
+    position: absolute;
+    left: 50%;
+    top: 64px;
+    bottom: auto;
+    width: min(70%, 270px);
+    transform: translateX(-50%) rotate(-2deg);
+  }
+
+  /* A short window: no bleed, so it sits below the label at a size that fits the panel. */
+  .device--card.device--float {
+    top: 64px;
+    bottom: auto;
+    width: min(62%, 240px);
+  }
+
+  /* Page showcase: sits in normal flow, centred by the flex panel around it. */
+  .device--page {
+    position: relative;
+    left: auto;
+    width: min(82%, 360px);
+    margin: auto;
+  }
+
+  @media (max-width: 760px) {
+    .device--card {
+      width: min(64%, 230px);
+      top: 56px;
+    }
+
+    .device--card.device--float {
+      top: 48px;
+      width: min(56%, 190px);
+    }
+  }
+</style>

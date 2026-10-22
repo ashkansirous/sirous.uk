@@ -4,9 +4,11 @@ import '../styles/tokens.css';
 interface Props {
   title: string;
   description: string;
+  /** Social-share image (absolute URL plus pixel size), when the page has one. */
+  ogImage?: { url: string; width: number; height: number };
 }
 
-const { title, description } = Astro.props;
+const { title, description, ogImage } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
 ---
 
@@ -30,6 +32,16 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonical} />
+    {
+      ogImage && (
+        <>
+          <meta property="og:image" content={ogImage.url} />
+          <meta property="og:image:width" content={String(ogImage.width)} />
+          <meta property="og:image:height" content={String(ogImage.height)} />
+          <meta name="twitter:card" content="summary_large_image" />
+        </>
+      )
+    }
 
     <!-- Fonts: Bricolage Grotesque (display), Hanken Grotesk (body), Space Mono (meta) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />

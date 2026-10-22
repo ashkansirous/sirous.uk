@@ -1,0 +1,37 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getImage } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import ProductHero from '../components/product/ProductHero.astro';
+import ProductShowcase from '../components/product/ProductShowcase.astro';
+import MoreProducts from '../components/product/MoreProducts.astro';
+import { products } from '../data/products';
+
+export const getStaticPaths = (() =>
+  products.map((p) => ({ params: { slug: p.slug }, props: { product: p } }))) satisfies GetStaticPaths;
+
+const { product } = Astro.props;
+const others = products.filter((p) => p.slug !== product.slug);
+// The screenshot is served at its source size (Astro never upscales), so the
+// dimensions come from the import, not from a requested width.
+const ogSource = await getImage({ src: product.screenshot, format: 'png' });
+const ogImage = {
+  url: new URL(ogSource.src, Astro.site).href,
+  width: product.screenshot.width,
+  height: product.screenshot.height,
+};
+---
+
+<Base
+  title={`${product.name} — sirous.uk`}
+  description={product.tagline}
+  ogImage={ogImage}
+>
+  <Header />
+  <ProductHero product={product} />
+  <ProductShowcase product={product} />
+  <MoreProducts products={others} />
+  <Footer />
+</Base>

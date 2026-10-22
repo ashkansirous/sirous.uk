@@ -32,6 +32,20 @@
   --color-live-pill-bg: #1f8a5b14;
   --color-live-pill-text: #1f7a50;
 
+  /* Testing status */
+  --color-testing: #b7791f;
+  --color-testing-pill-bg: #b7791f14;
+  --color-testing-pill-text: #8a5a12;
+
+  /* Product panel colours (one per product) */
+  --color-panel-rtst: #3b6fe3;
+  --color-panel-lcm: #102a43;
+  --color-panel-dino: #5b57e8;
+
+  /* On-panel overlays (watermark, device edge) */
+  --color-on-panel-watermark: rgba(255, 255, 255, 0.13);
+  --color-on-panel-edge: rgba(255, 255, 255, 0.18);
+
   /* Type families */
   --font-display: 'Bricolage Grotesque', sans-serif;
   --font-body: 'Hanken Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -40,6 +54,10 @@
   /* Radii */
   --radius-card: 18px;
   --radius-pill: 999px;
+  --radius-device: 22px;
+
+  /* Shadows */
+  --shadow-device: 0 30px 60px -24px rgba(26, 22, 19, 0.55);
 
   /* Layout */
   --container-max: 1180px;
