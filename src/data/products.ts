@@ -179,9 +179,9 @@ export const products: Product[] = [
     index: '02',
     status: 'live',
     name: 'Lets Call Mom',
-    tagline: 'Private family video calls that survive a filtered network.',
+    tagline: 'Private family video calls built for unreliable connections.',
     description:
-      'Built so a call between the UK and a heavily filtered connection in Iran never drops. WebRTC signalled by a Cloudflare Worker, with every byte of media forced over TLS on port 443 so it looks like ordinary HTTPS. Apps for web, Android, iPhone, Windows and Linux that ring like a phone, with messaging, live translated subtitles and on-device face framing. Invite-only, built for one family.',
+      'Built for family calls and messaging with elderly relatives, especially over low-bandwidth and unreliable networks. WebRTC signalled by a Cloudflare Worker, with every byte of media sent over a single TLS relay on port 443 so a call keeps going when the connection is poor. Apps for web, Android, iPhone, Windows and Linux that ring like a phone, with messaging, live translated subtitles and on-device face framing. Invite-only, built for one family.',
     url: 'https://talk.sirous.uk/',
     displayUrl: 'talk.sirous.uk',
     screenshot: lcmShot,
