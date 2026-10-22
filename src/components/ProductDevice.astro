@@ -12,10 +12,12 @@ const { product, variant } = Astro.props;
 const fit = product.screenshotFit ?? 'bleed';
 const isCard = variant === 'card';
 const isWide = product.screenshot.width > product.screenshot.height;
-const widths = isWide ? [480, 720, 1080] : isCard ? [320, 480, 640] : [360, 540, 720, 1080];
+const isArt = fit === 'art';
+const widths = isArt ? [800, 1200, 1600] : isWide ? [480, 720, 1080] : isCard ? [320, 480, 640] : [360, 540, 720, 1080];
 const sizes = getSizes(isCard, isWide);
 
 function getSizes(card: boolean, wide: boolean): string {
+  if (isArt) return '(max-width: 760px) 100vw, 520px';
   if (wide) return card ? '(max-width: 760px) 90vw, 420px' : '(max-width: 760px) 90vw, 520px';
   return card ? '(max-width: 760px) 70vw, 300px' : '(max-width: 760px) 90vw, 360px';
 }
@@ -43,6 +45,32 @@ function getSizes(card: boolean, wide: boolean): string {
     display: block;
     width: 100%;
     height: auto;
+  }
+
+  /* Full-bleed artwork: fills the panel, no window chrome. The label sits above (z-index). */
+  .device--art {
+    position: absolute;
+    inset: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    transform: none;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    z-index: 0;
+  }
+
+  .device--art img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 72% 50%;
   }
 
   /* Anchored from the top so the label stays clear; the tall screenshot bleeds off the bottom. */
@@ -92,6 +120,27 @@ function getSizes(card: boolean, wide: boolean): string {
 
     .device--card.device--float.device--wide {
       width: min(88%, 420px);
+    }
+  }
+
+  .device--card.device--art,
+  .device--page.device--art,
+  .device--card.device--art.device--wide,
+  .device--page.device--art.device--wide {
+    position: absolute;
+    inset: 0;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    transform: none;
+  }
+
+  @media (max-width: 760px) {
+    .device--card.device--art {
+      top: 0;
+      width: 100%;
     }
   }
 </style>
