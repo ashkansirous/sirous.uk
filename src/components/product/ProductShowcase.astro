@@ -11,10 +11,11 @@ interface Props {
 }
 
 const { product } = Astro.props;
+const isWide = product.screenshot.width > product.screenshot.height;
 ---
 
 <section class="showcase">
-  <div class="panel" style={`background: var(--color-panel-${product.panel})`}>
+  <div class:list={['panel', { 'panel--wide': isWide }]} style={`background: var(--color-panel-${product.panel})`}>
     <ProductDevice product={product} variant="page" />
   </div>
 
@@ -44,6 +45,10 @@ const { product } = Astro.props;
     top: 24px;
   }
 
+  .panel--wide {
+    min-height: 440px;
+  }
+
   .details {
     display: flex;
     flex-direction: column;
@@ -59,6 +64,10 @@ const { product } = Astro.props;
     .panel {
       position: static;
       min-height: 420px;
+    }
+
+    .panel--wide {
+      min-height: 320px;
     }
   }
 </style>

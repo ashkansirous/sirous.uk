@@ -41,6 +41,7 @@
   --color-panel-rtst: #3b6fe3;
   --color-panel-lcm: #102a43;
   --color-panel-dino: #5b57e8;
+  --color-panel-book: #232532;
 
   /* On-panel overlays (watermark, device edge) */
   --color-on-panel-watermark: rgba(255, 255, 255, 0.13);

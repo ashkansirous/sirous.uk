@@ -9,11 +9,12 @@
 import rtstShot from '../assets/products/read-the-stupid-text.png';
 import lcmShot from '../assets/products/lets-call-mom.png';
 import dinoShot from '../assets/products/dino-reader.png';
+import bookShot from '../assets/products/print-the-damn-book.png';
 
 export type ProductStatus = 'live' | 'testing' | 'reserved';
 export type PlatformStatus = 'live' | 'testing';
 export type ScreenshotFit = 'bleed' | 'float';
-export type PanelKey = 'rtst' | 'lcm' | 'dino';
+export type PanelKey = 'rtst' | 'lcm' | 'dino' | 'book';
 
 export interface Platform {
   name: string;
@@ -75,6 +76,7 @@ export interface ReservedSlot {
 }
 
 const RTST_REPO = 'https://github.com/ashkansirous/ReadTheStupidText';
+const BOOK_REPO = 'https://github.com/ashkansirous/print-the-damn-book';
 
 export const products: Product[] = [
   {
@@ -347,10 +349,73 @@ export const products: Product[] = [
       { label: 'GitHub', url: RTST_REPO },
     ],
   },
+  {
+    slug: 'print-the-damn-book',
+    index: '04',
+    status: 'testing',
+    name: 'Print the Damn Book',
+    tagline: 'Print a home-made picture book without working out the page order yourself.',
+    description:
+      'Give it a folder of page images named Cover, 1, 2 … Back cover. It arranges them as a saddle-stitch booklet, two pages per landscape sheet, double-sided, shows you every sheet front and back, and sends the whole thing to your duplex printer in one job. Fold the stack in the middle and the book reads in order.',
+    url: BOOK_REPO,
+    displayUrl: 'github.com/ashkansirous/print-the-damn-book',
+    screenshot: bookShot,
+    screenshotAlt:
+      'The Print the Damn Book Windows app with a 12-page sample book loaded, showing the page list and a preview of the sheets.',
+    screenshotFit: 'float',
+    panel: 'book',
+    audience: 'For home-made picture books',
+    platforms: [
+      {
+        name: 'Windows',
+        status: 'testing',
+        note: 'Single self-contained exe; first release coming',
+        url: BOOK_REPO,
+      },
+    ],
+    features: [
+      {
+        title: 'Open a folder of pages',
+        body: 'JPG or PNG pages named Cover, 1 … N, Back cover, in natural sort order. Drag to reorder, add and remove pages; blanks are inserted before the back cover automatically.',
+      },
+      {
+        title: 'The app works out the page order',
+        body: 'Saddle-stitch imposition, two pages per landscape sheet, decides which page goes on which face. The maths is unit-tested in a separate Core library.',
+      },
+      {
+        title: 'Sheet preview',
+        body: 'See every front and back before printing, with a warning above 6 sheets (a single folded stack).',
+      },
+      {
+        title: 'Duplex in one job',
+        body: 'Orientation, duplex mode and paper size are set by the app (A4 default, Letter selectable). A "Print test sheet" button confirms the flip edge; manual two-sided mode covers printers without duplex.',
+      },
+      {
+        title: 'Remembers your options',
+        body: 'Fit or fill, flip edge, margin, paper, printer and two-sided are kept between runs, with an optional separate job for the cover sheet.',
+      },
+      {
+        title: 'Offline and private',
+        body: 'No network access, no accounts; settings stay in a local folder.',
+      },
+    ],
+    stack: [
+      'C#',
+      '.NET 10 (LTS)',
+      'WPF',
+      'MVVM (CommunityToolkit.Mvvm)',
+      'System.Printing',
+      'xUnit tests on the Core library',
+      'GitHub Actions release build (single self-contained win-x64 exe)',
+    ],
+    links: [
+      { label: 'Source on GitHub', url: BOOK_REPO, primary: true },
+    ],
+  },
 ];
 
 export const reservedSlot: ReservedSlot = {
-  index: '04',
+  index: '05',
   status: 'reserved',
   name: 'This space grows',
   description: 'Each release lands here.',
