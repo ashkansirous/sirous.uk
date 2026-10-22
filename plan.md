@@ -25,6 +25,9 @@ production Astro site and ship it to GitHub Pages on the apex domain `sirous.uk`
       `actions/deploy-pages@v5`), `README.md`, `CLAUDE.md`, `AGENTS.md`.
 - [x] **4. Ship** — `git init -b main`, initial commit, create GitHub repo, push, enable Pages
       (Actions source). Report the apex DNS records for the user to add.
+- [x] **5. Slice 5 — product pages and screenshots (2026-10-22)** — `products` data model
+      (three products + `reservedSlot`), screenshot cards on the home page, one page per product at
+      `/<slug>/` (`src/pages/[slug].astro`, `components/product/`), testing/panel tokens, og:image.
 
 ## Out of scope
 

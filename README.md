@@ -1,7 +1,8 @@
 # sirous.uk
 
 The portal / landing page for the software [Ashkan Sirous](https://ashkan.sirous.uk) builds.
-One live product today (**Read the Stupid Text**); the grid grows as each new tool ships.
+Three products today: **Read The Stupid Text** and **Lets Call Mom** are live, **Dino Reader** is in
+testing. Each has its own page at `/<slug>/`; screenshots live in `src/assets/products/`.
 
 Built with [Astro](https://astro.build) (static output) — plain HTML + scoped CSS, no UI
 framework. Recreated pixel-faithfully from the design handoff in
@@ -22,17 +23,19 @@ npm run preview  # serve the built dist/ locally
 | --- | --- |
 | `src/pages/index.astro` | Thin page shell — composes the sections |
 | `src/layouts/Base.astro` | `<head>`, fonts, global tokens, container |
-| `src/components/` | `Header`, `Hero`, `MakerCard`, `Products`, `ProductCard`, `UpcomingCard`, `Footer` |
-| `src/data/products.ts` | Typed product catalogue (flagship + placeholder slots) |
+| `src/components/` | `Header`, `Hero`, `MakerCard`, `Products`, `ProductCard`, `ProductSlotCard`, `Footer`; `product/` holds the product-page sections |
+| `src/pages/[slug].astro` | One page per product, built from `products` |
+| `src/data/products.ts` | Typed product catalogue (`products` + `reservedSlot`) |
 | `src/config.ts` | `showUpcoming` flag and shared brand links |
 | `src/styles/tokens.css` | Design tokens (colour, type, radii) |
 | `src/assets/ashkan.jpg` | Maker headshot (local copy, optimised at build) |
+| `src/assets/products/` | Product screenshots, served through `astro:assets` |
 
 ### Adding a product
 
-Append an entry to `src/data/products.ts`. When the grid fills up, remove an `upcoming`
-placeholder — or set `showUpcoming: false` in `src/config.ts` to hide the placeholder slots
-entirely.
+Append an entry to `src/data/products.ts` and drop its screenshot in `src/assets/products/`;
+the card and the `/<slug>/` page are generated. Set `showUpcoming: false` in `src/config.ts`
+to hide the reserved placeholder slot.
 
 ### Brand accent
 

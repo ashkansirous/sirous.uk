@@ -1,0 +1,71 @@
+---
+import type { ProductStatus } from '../data/products';
+
+interface Props {
+  status: Exclude<ProductStatus, 'reserved'>;
+  small?: boolean;
+}
+
+const { status, small = false } = Astro.props;
+const label = status === 'live' ? 'LIVE' : 'IN TESTING';
+---
+
+<span class:list={['pill', `pill--${status}`, { small }]}>
+  <span class="dot"></span>{label}
+</span>
+
+<style>
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    white-space: nowrap;
+  }
+
+  .pill.small {
+    padding: 3px 9px;
+    font-size: 10px;
+    gap: 6px;
+  }
+
+  .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+  }
+
+  .small .dot {
+    width: 6px;
+    height: 6px;
+  }
+
+  .pill--live {
+    background: var(--color-live-pill-bg);
+    color: var(--color-live-pill-text);
+  }
+
+  .pill--live .dot {
+    background: var(--color-live);
+    animation: pulseDot 1.8s ease-in-out infinite;
+  }
+
+  .pill--testing {
+    background: var(--color-testing-pill-bg);
+    color: var(--color-testing-pill-text);
+  }
+
+  .pill--testing .dot {
+    background: var(--color-testing);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pill--live .dot {
+      animation: none;
+    }
+  }
+</style>

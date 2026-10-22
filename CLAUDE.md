@@ -12,7 +12,10 @@ handoff as the source of truth for layout, colour, type and copy.
 - **Components are small and single-purpose**, each with its own scoped `<style>`. `index.astro`
   stays a thin shell that just composes sections.
 - **Products are data, not markup.** Add/grow the catalogue in `src/data/products.ts`; toggle the
-  placeholder slots with `showUpcoming` in `src/config.ts`. Don't hand-write new card markup.
+  reserved slot with `showUpcoming` in `src/config.ts`. Don't hand-write new card markup.
+- **Product pages are `src/pages/[slug].astro`** built from `products` in `src/data/products.ts`;
+  screenshots live in `src/assets/products/<slug>.png` and are referenced through `astro:assets`,
+  never `public/`.
 - **The accent `#102a43` mirrors `ashkan.sirous.uk`'s brand** — keep them aligned.
 
 ## Workflow

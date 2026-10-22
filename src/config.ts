@@ -1,9 +1,9 @@
 /**
  * Site-level configuration for the sirous.uk portal.
- * Edit here to toggle the upcoming placeholder slots or update brand links.
+ * Edit here to toggle the reserved slot or update brand links.
  */
 export const siteConfig = {
-  /** Show the two dashed "upcoming" placeholder cards under the flagship. */
+  /** Show the dashed reserved slot after the last product. */
   showUpcoming: true,
   /** External brand links shared across header, maker card and footer. */
   links: {

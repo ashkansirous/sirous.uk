@@ -1,0 +1,71 @@
+---
+import type { Highlight } from '../../data/products';
+import SectionHeader from '../SectionHeader.astro';
+
+interface Props {
+  highlights: Highlight[];
+  title?: string;
+}
+
+const DEFAULT_TITLE = 'Highlights';
+const { highlights, title = DEFAULT_TITLE } = Astro.props;
+---
+
+<section class="highlights">
+  <SectionHeader title={title} label="/ highlights" />
+  <div class="grid">
+    {
+      highlights.map((item) => (
+        <article class="card">
+          <div class="kicker">{item.kicker}</div>
+          <h3>{item.title}</h3>
+          <p>{item.body}</p>
+        </article>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .card {
+    background: var(--color-card-surface);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-card);
+    padding: 22px;
+  }
+
+  .kicker {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+  }
+
+  h3 {
+    margin: 12px 0 0;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.2;
+  }
+
+  p {
+    margin: 12px 0 0;
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--color-body);
+  }
+
+  @media (max-width: 760px) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
