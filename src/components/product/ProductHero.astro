@@ -1,0 +1,113 @@
+---
+import type { Product } from '../../data/products';
+import StatusPill from '../StatusPill.astro';
+
+interface Props {
+  product: Product;
+}
+
+const { product } = Astro.props;
+---
+
+<section class="hero">
+  <div class="eyebrow">
+    <StatusPill status={product.status === 'testing' ? 'testing' : 'live'} />
+    <span class="index">{product.index}</span>
+    <span class="crumb">· sirous.uk / products</span>
+  </div>
+
+  <h1>{product.name}</h1>
+  <p class="lead">{product.tagline}</p>
+  <p class="description">{product.description}</p>
+
+  <div class="buttons">
+    {
+      product.links.map((link) => (
+        <a class:list={['button', { primary: link.primary }]} href={link.url} rel="noopener">
+          {link.label}
+          <span aria-hidden="true">↗</span>
+        </a>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding: clamp(56px, 9vw, 108px) 0 clamp(40px, 6vw, 72px);
+  }
+
+  .eyebrow {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .index {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-faint);
+  }
+
+  .crumb {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-muted);
+  }
+
+  h1 {
+    margin: 22px 0 0;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(40px, 6vw, 76px);
+    line-height: 0.98;
+    letter-spacing: -0.025em;
+  }
+
+  .lead {
+    margin: 24px 0 0;
+    font-size: clamp(18px, 1.8vw, 22px);
+    line-height: 1.5;
+    color: var(--color-ink);
+    max-width: 52ch;
+  }
+
+  .description {
+    margin: 16px 0 0;
+    font-size: 16.5px;
+    line-height: 1.6;
+    color: var(--color-body);
+    max-width: 60ch;
+  }
+
+  .buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 32px;
+  }
+
+  .button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-pill);
+    background: transparent;
+    color: var(--color-ink);
+    font-size: 14px;
+    text-decoration: none;
+  }
+
+  .button:hover {
+    border-color: var(--color-ink);
+  }
+
+  .button.primary {
+    background: var(--color-accent);
+    border-color: var(--color-accent);
+    color: var(--color-accent-text);
+  }
+</style>
