@@ -1,0 +1,37 @@
+---
+import SectionHeader from '../SectionHeader.astro';
+
+interface Props {
+  stack: string[];
+}
+
+const { stack } = Astro.props;
+---
+
+<section class="stack">
+  <SectionHeader title="Under the hood" label="/ stack" />
+  <ul class="chips">
+    {stack.map((item) => <li class="chip">{item}</li>)}
+  </ul>
+</section>
+
+<style>
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .chip {
+    padding: 7px 12px;
+    background: var(--color-chip-surface);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-pill);
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-ink);
+  }
+</style>

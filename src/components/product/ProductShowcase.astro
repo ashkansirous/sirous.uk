@@ -1,0 +1,64 @@
+---
+import type { Product } from '../../data/products';
+import ProductDevice from '../ProductDevice.astro';
+import ProductHighlights from './ProductHighlights.astro';
+import ProductFeatures from './ProductFeatures.astro';
+import ProductPlatforms from './ProductPlatforms.astro';
+import ProductStack from './ProductStack.astro';
+
+interface Props {
+  product: Product;
+}
+
+const { product } = Astro.props;
+---
+
+<section class="showcase">
+  <div class="panel" style={`background: var(--color-panel-${product.panel})`}>
+    <ProductDevice product={product} variant="page" />
+  </div>
+
+  <div class="details">
+    {product.highlights && <ProductHighlights highlights={product.highlights} title={product.highlightsTitle} />}
+    <ProductFeatures features={product.features} />
+    <ProductPlatforms platforms={product.platforms} />
+    <ProductStack stack={product.stack} />
+  </div>
+</section>
+
+<style>
+  .showcase {
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 40px;
+    align-items: start;
+  }
+
+  .panel {
+    display: flex;
+    padding: 40px 20px;
+    min-height: 560px;
+    border-radius: var(--radius-card);
+    overflow: hidden;
+    position: sticky;
+    top: 24px;
+  }
+
+  .details {
+    display: flex;
+    flex-direction: column;
+    gap: 56px;
+    min-width: 0;
+  }
+
+  @media (max-width: 760px) {
+    .showcase {
+      grid-template-columns: 1fr;
+    }
+
+    .panel {
+      position: static;
+      min-height: 420px;
+    }
+  }
+</style>

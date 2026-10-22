@@ -1,0 +1,65 @@
+---
+import type { Feature } from '../../data/products';
+import SectionHeader from '../SectionHeader.astro';
+
+interface Props {
+  features: Feature[];
+}
+
+const { features } = Astro.props;
+const pad = (n: number) => String(n + 1).padStart(2, '0');
+---
+
+<section class="features">
+  <SectionHeader title="What it does" label="/ features" />
+  <ol class="list">
+    {
+      features.map((feature, i) => (
+        <li class="row">
+          <span class="num">{pad(i)}</span>
+          <div>
+            <h3>{feature.title}</h3>
+            <p>{feature.body}</p>
+          </div>
+        </li>
+      ))
+    }
+  </ol>
+</section>
+
+<style>
+  .list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .row {
+    display: grid;
+    grid-template-columns: 36px minmax(0, 1fr);
+    gap: 12px;
+    padding: 18px 0;
+    border-top: 1px solid var(--color-hairline-2);
+  }
+
+  .num {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: var(--color-faint);
+    padding-top: 4px;
+  }
+
+  h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 18px;
+  }
+
+  p {
+    margin: 6px 0 0;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--color-body);
+  }
+</style>

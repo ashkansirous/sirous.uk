@@ -1,31 +1,47 @@
 ---
 import type { Product } from '../data/products';
+import StatusPill from './StatusPill.astro';
+import ProductDevice from './ProductDevice.astro';
 
 interface Props {
   product: Product;
 }
 
 const { product } = Astro.props;
+const statusText = product.status === 'testing' ? 'In testing' : 'Live';
+const panelLabel = product.audience ?? statusText;
 ---
 
-<a class="card" href={product.url}>
+<a class="card" href={`/${product.slug}/`}>
   <div class="inner">
     <div class="text-panel">
       <div class="meta">
-        <span class="live-pill">
-          <span class="live-dot"></span>LIVE
-        </span>
+        <StatusPill status={product.status === 'testing' ? 'testing' : 'live'} />
         <span class="index">{product.index}</span>
       </div>
       <h3>{product.name}</h3>
-      <p class="desc">{product.description}</p>
-      {product.displayUrl && <div class="url">{product.displayUrl}</div>}
+      <p class="desc">{product.tagline}</p>
+      <ul class="chips">
+        {
+          product.platforms.map((platform) => (
+            <li class="chip">
+              <span class:list={['dot', `dot--${platform.status}`]} />
+              {platform.name}
+            </li>
+          ))
+        }
+      </ul>
+      <div class="url">{product.displayUrl}</div>
+      <div class="cta">
+        <span class="cta-label">VIEW DETAILS</span>
+        <span class="arrow" aria-hidden="true">→</span>
+      </div>
     </div>
 
-    <div class="accent-panel">
+    <div class="panel" style={`background: var(--color-panel-${product.panel})`}>
       <span class="watermark" aria-hidden="true">↗</span>
-      <span class="label">OPEN&nbsp;THE&nbsp;APP</span>
-      <span class="cta-dot" aria-hidden="true">→</span>
+      <span class="panel-label">{panelLabel}</span>
+      <ProductDevice product={product} variant="card" />
     </div>
   </div>
 </a>
@@ -53,8 +69,8 @@ const { product } = Astro.props;
 
   .inner {
     display: grid;
-    grid-template-columns: 1.45fr 0.9fr;
-    min-height: 340px;
+    grid-template-columns: 1.25fr 0.95fr;
+    min-height: 420px;
   }
 
   .text-panel {
@@ -69,27 +85,6 @@ const { product } = Astro.props;
     gap: 12px;
   }
 
-  .live-pill {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    padding: 6px 12px;
-    border-radius: var(--radius-pill);
-    background: var(--color-live-pill-bg);
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.08em;
-    color: var(--color-live-pill-text);
-  }
-
-  .live-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background: var(--color-live);
-    animation: pulseDot 1.8s ease-in-out infinite;
-  }
-
   .index {
     font-family: var(--font-mono);
     font-size: 12px;
@@ -97,7 +92,7 @@ const { product } = Astro.props;
   }
 
   h3 {
-    margin: auto 0 0;
+    margin: 0;
     padding-top: 28px;
     font-family: var(--font-display);
     font-weight: 600;
@@ -114,22 +109,76 @@ const { product } = Astro.props;
     max-width: 42ch;
   }
 
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 20px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    padding: 5px 11px;
+    background: var(--color-chip-surface);
+    border: 1px solid var(--color-hairline);
+    border-radius: var(--radius-pill);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: var(--color-ink);
+  }
+
+  .dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+  }
+
+  .dot--live {
+    background: var(--color-live);
+  }
+
+  .dot--testing {
+    background: var(--color-testing);
+  }
+
   .url {
-    margin-top: 22px;
+    margin-top: 20px;
     font-family: var(--font-mono);
     font-size: 12.5px;
     color: var(--color-muted);
   }
 
-  .accent-panel {
-    position: relative;
-    background: var(--color-accent);
+  .cta {
+    margin-top: auto;
+    padding-top: 28px;
     display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    color: var(--color-ink);
+  }
+
+  .arrow {
+    color: var(--color-accent);
+    font-size: 16px;
+    transition: transform 0.35s ease;
+  }
+
+  .card:hover .arrow {
+    transform: translateX(4px);
+  }
+
+  .panel {
+    position: relative;
+    overflow: hidden;
     padding: clamp(22px, 2.6vw, 34px);
     color: var(--color-accent-text);
-    overflow: hidden;
   }
 
   .watermark {
@@ -140,40 +189,41 @@ const { product } = Astro.props;
     font-weight: 700;
     font-size: 200px;
     line-height: 1;
-    color: rgba(255, 255, 255, 0.13);
+    color: var(--color-on-panel-watermark);
     pointer-events: none;
   }
 
-  .label {
+  .panel-label {
     position: relative;
+    z-index: 1;
+    text-transform: uppercase;
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 11px;
     letter-spacing: 0.1em;
+    color: var(--color-accent-text);
     opacity: 0.85;
   }
 
-  .cta-dot {
-    position: relative;
-    width: 54px;
-    height: 54px;
-    flex: 0 0 auto;
-    border-radius: 50%;
-    background: #fff;
-    color: var(--color-accent);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 22px;
-  }
-
-  /* Narrow viewports: stack the text panel above the accent panel. */
+  /* Narrow viewports: stack the text panel above the screenshot panel. */
   @media (max-width: 760px) {
     .inner {
       grid-template-columns: 1fr;
     }
 
-    .accent-panel {
-      min-height: 120px;
+    .panel {
+      min-height: 300px;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .card,
+    .arrow {
+      transition: none;
+    }
+
+    .card:hover,
+    .card:hover .arrow {
+      transform: none;
     }
   }
 </style>
