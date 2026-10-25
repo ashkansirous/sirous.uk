@@ -90,6 +90,8 @@ export interface ReservedSlot {
 }
 
 const RTST_REPO = 'https://github.com/ashkansirous/ReadTheStupidText';
+const RTST_SITE_DOWNLOAD = 'https://readthestupidtext.sirous.uk/download';
+const RTST_PLAY_TESTING = 'https://play.google.com/apps/testing/uk.sirous.readthestupidtext';
 const BOOK_REPO = 'https://github.com/ashkansirous/print-the-damn-book';
 const BOOK_SITE = 'https://print-the-damn-book.sirous.uk/';
 const BOOK_DOWNLOAD = `${BOOK_REPO}/releases/latest/download/PrintTheDamnBook.exe`;
@@ -102,7 +104,7 @@ export const products: Product[] = [
     name: 'Read The Stupid Text',
     tagline: 'Reads any text aloud in a natural voice, offline, at your speed.',
     description:
-      'Select or copy text, press Ctrl+Win+R, or open a file, and it reads it aloud in a natural on-device neural voice at any speed from 0.5x to 2x. A Windows tray app on the Microsoft Store, with Android and iPhone apps that read a page straight from the camera. Nothing you read leaves the device.',
+      'Select or copy text, press Ctrl+Win+R, or open a file, and it reads it aloud in a natural on-device neural voice at any speed from 0.5x to 2x. A Windows tray app on the Microsoft Store, with Android and iPhone apps (both in beta) that read a page straight from the camera. Nothing you read leaves the device.',
     url: 'https://readthestupidtext.sirous.uk/',
     displayUrl: 'readthestupidtext.sirous.uk',
     screenshot: rtstShot,
@@ -121,13 +123,13 @@ export const products: Product[] = [
       {
         name: 'Android',
         status: 'testing',
-        note: 'Google Play closed testing, and a direct APK.',
-        url: 'https://readthestupidtext.sirous.uk/download',
+        note: 'Beta: Google Play for testers, or the APK for anyone.',
+        url: RTST_SITE_DOWNLOAD,
       },
       {
         name: 'iPhone and iPad',
         status: 'testing',
-        note: 'TestFlight. Ships from CI; testers are added in App Store Connect.',
+        note: 'Invite-only beta on TestFlight.',
       },
     ],
     features: [
@@ -152,8 +154,8 @@ export const products: Product[] = [
         body: 'A "media card" with waveform, progress, speed pill, voice and language pickers, a draggable window, and an activity log that explains every read.',
       },
       {
-        title: 'Nine languages',
-        body: 'Voices and interface in English, Farsi, French, Spanish, Portuguese, Chinese, Arabic, Russian and Japanese, with right-to-left layout for Farsi and Arabic, on Windows, Android and iOS.',
+        title: 'Fourteen languages',
+        body: 'Voices and interface in English, Farsi, French, Spanish, Portuguese, Chinese, Arabic, Russian, Japanese, Danish, Finnish, Swedish, Norwegian and Dutch, with right-to-left layout for Farsi and Arabic, on Windows, Android and iOS.',
       },
       {
         title: 'On-device translation',
@@ -188,7 +190,8 @@ export const products: Product[] = [
         url: 'https://apps.microsoft.com/detail/9NGT1BN1H92V',
         primary: true,
       },
-      { label: 'Android download', url: 'https://readthestupidtext.sirous.uk/download' },
+      { label: 'Android beta (APK)', url: RTST_SITE_DOWNLOAD },
+      { label: 'Android beta on Google Play (testers)', url: RTST_PLAY_TESTING },
       { label: 'GitHub', url: RTST_REPO },
     ],
   },
