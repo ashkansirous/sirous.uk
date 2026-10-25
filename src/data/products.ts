@@ -347,8 +347,8 @@ export const products: Product[] = [
         body: "Choose each character's voice, preview it, and merge two names that are the same character.",
       },
       {
-        title: 'Nine languages',
-        body: 'Right-to-left layout for Farsi and Arabic; the same on-device neural voices and OCR as Read The Stupid Text.',
+        title: 'Fourteen languages',
+        body: 'English, Farsi, French, Spanish, Portuguese, Chinese, Arabic, Russian, Japanese, Danish, Finnish, Swedish, Norwegian and Dutch, with right-to-left layout for Farsi and Arabic; the same on-device neural voices and OCR as Read The Stupid Text.',
       },
       {
         title: 'Offline and private',
