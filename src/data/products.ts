@@ -92,6 +92,8 @@ export interface ReservedSlot {
 const RTST_REPO = 'https://github.com/ashkansirous/ReadTheStupidText';
 const RTST_SITE_DOWNLOAD = 'https://readthestupidtext.sirous.uk/download';
 const RTST_PLAY_TESTING = 'https://play.google.com/apps/testing/uk.sirous.readthestupidtext';
+const RTST_TESTFLIGHT = 'https://testflight.apple.com/join/NSeUK2h8';
+const DINO_TESTFLIGHT = 'https://testflight.apple.com/join/WnF7M53D';
 const BOOK_REPO = 'https://github.com/ashkansirous/print-the-damn-book';
 const BOOK_SITE = 'https://print-the-damn-book.sirous.uk/';
 const BOOK_DOWNLOAD = `${BOOK_REPO}/releases/latest/download/PrintTheDamnBook.exe`;
@@ -129,7 +131,8 @@ export const products: Product[] = [
       {
         name: 'iPhone and iPad',
         status: 'testing',
-        note: 'Invite-only beta on TestFlight.',
+        note: 'Beta on TestFlight, open to anyone.',
+        url: RTST_TESTFLIGHT,
       },
     ],
     features: [
@@ -322,7 +325,7 @@ export const products: Product[] = [
         note: 'Google Play internal testing, plus a direct download.',
         url: 'https://dinoreader.sirous.uk/download/android/latest',
       },
-      { name: 'iPhone and iPad', status: 'testing', note: 'TestFlight build.' },
+      { name: 'iPhone and iPad', status: 'testing', note: 'Beta on TestFlight, open to anyone.', url: DINO_TESTFLIGHT },
       {
         name: 'Windows',
         status: 'testing',
