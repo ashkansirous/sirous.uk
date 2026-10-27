@@ -98,6 +98,7 @@ export interface ReservedSlot {
 const RTST_REPO = 'https://github.com/ashkansirous/ReadTheStupidText';
 const RTST_PLAY_TESTING = 'https://play.google.com/apps/testing/uk.sirous.readthestupidtext';
 const RTST_TESTFLIGHT = 'https://testflight.apple.com/join/NSeUK2h8';
+const TESTERS_GROUP = 'https://groups.google.com/g/sirous-app-testers';
 const DINO_PLAY_TESTING = 'https://play.google.com/apps/testing/uk.sirous.dinoreader';
 const DINO_TESTFLIGHT = 'https://testflight.apple.com/join/WnF7M53D';
 const BOOK_REPO = 'https://github.com/ashkansirous/print-the-damn-book';
@@ -131,7 +132,7 @@ export const products: Product[] = [
       {
         name: 'Android',
         status: 'testing',
-        note: 'Beta on Google Play, for people on the tester list.',
+        note: 'Beta on Google Play: join the testers group, then open the Play link.',
         url: RTST_PLAY_TESTING,
       },
       {
@@ -217,7 +218,8 @@ export const products: Product[] = [
         url: 'https://apps.microsoft.com/detail/9NGT1BN1H92V',
         primary: true,
       },
-      { label: 'Android beta on Google Play (testers)', url: RTST_PLAY_TESTING },
+      { label: 'Android beta: 1. join the testers group', url: TESTERS_GROUP },
+      { label: 'Android beta: 2. Google Play', url: RTST_PLAY_TESTING },
       { label: 'GitHub', url: RTST_REPO },
     ],
   },
@@ -345,7 +347,7 @@ export const products: Product[] = [
       {
         name: 'Android',
         status: 'testing',
-        note: 'Beta on Google Play.',
+        note: 'Beta on Google Play: join the testers group, then open the Play link.',
         url: DINO_PLAY_TESTING,
       },
       { name: 'iPhone and iPad', status: 'testing', note: 'Beta on TestFlight, open to anyone.', url: DINO_TESTFLIGHT },
@@ -408,7 +410,8 @@ export const products: Product[] = [
     ],
     links: [
       { label: 'dinoreader.sirous.uk', url: 'https://dinoreader.sirous.uk/', primary: true },
-      { label: 'Android beta on Google Play', url: DINO_PLAY_TESTING },
+      { label: 'Android beta: 1. join the testers group', url: TESTERS_GROUP },
+      { label: 'Android beta: 2. Google Play', url: DINO_PLAY_TESTING },
       { label: 'iPhone and iPad beta on TestFlight', url: DINO_TESTFLIGHT },
       { label: 'GitHub', url: RTST_REPO },
     ],
