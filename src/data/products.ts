@@ -9,6 +9,12 @@
 import rtstShot from '../assets/products/read-the-stupid-text.png';
 import lcmShot from '../assets/products/lets-call-mom.png';
 import dinoShot from '../assets/products/dino-reader.png';
+import dinoStep1 from '../assets/products/dino-reader-step-1.webp';
+import dinoStep2 from '../assets/products/dino-reader-step-2.webp';
+import dinoStep3 from '../assets/products/dino-reader-step-3.webp';
+import rtstStep1 from '../assets/products/read-the-stupid-text-step-1.webp';
+import rtstStep2 from '../assets/products/read-the-stupid-text-step-2.webp';
+import rtstStep3 from '../assets/products/read-the-stupid-text-step-3.webp';
 import bookShot from '../assets/products/print-the-damn-book.webp';
 import bookStep1 from '../assets/products/print-the-damn-book-step-1.webp';
 import bookStep2 from '../assets/products/print-the-damn-book-step-2.webp';
@@ -90,9 +96,9 @@ export interface ReservedSlot {
 }
 
 const RTST_REPO = 'https://github.com/ashkansirous/ReadTheStupidText';
-const RTST_SITE_DOWNLOAD = 'https://readthestupidtext.sirous.uk/download';
 const RTST_PLAY_TESTING = 'https://play.google.com/apps/testing/uk.sirous.readthestupidtext';
 const RTST_TESTFLIGHT = 'https://testflight.apple.com/join/NSeUK2h8';
+const DINO_PLAY_TESTING = 'https://play.google.com/apps/testing/uk.sirous.dinoreader';
 const DINO_TESTFLIGHT = 'https://testflight.apple.com/join/WnF7M53D';
 const BOOK_REPO = 'https://github.com/ashkansirous/print-the-damn-book';
 const BOOK_SITE = 'https://print-the-damn-book.sirous.uk/';
@@ -111,7 +117,7 @@ export const products: Product[] = [
     displayUrl: 'readthestupidtext.sirous.uk',
     screenshot: rtstShot,
     screenshotAlt:
-      'The Read The Stupid Text tray control panel showing the current read, play and skip buttons, 1.5x speed, the Momonga voice and an activity log.',
+      'The Read The Stupid Text tray control panel while it reads copied text: pause and skip buttons, progress, the speed, the Momonga voice and the read controls.',
     screenshotFit: 'float',
     panel: 'rtst',
     audience: 'On the Microsoft Store',
@@ -125,8 +131,8 @@ export const products: Product[] = [
       {
         name: 'Android',
         status: 'testing',
-        note: 'Beta: Google Play for testers, or the APK for anyone.',
-        url: RTST_SITE_DOWNLOAD,
+        note: 'Beta on Google Play, for people on the tester list.',
+        url: RTST_PLAY_TESTING,
       },
       {
         name: 'iPhone and iPad',
@@ -174,9 +180,27 @@ export const products: Product[] = [
       },
       {
         title: 'Private by design',
-        body: 'No account, no telemetry; text, files and scans never leave the device.',
+        body: 'No account; text, files and scans never leave the device. Only small anonymous counts are sent (no names, nothing you read), and you can switch them off.',
       },
     ],
+    galleryTitle: 'On your phone',
+    gallery: [
+      {
+        image: rtstStep1,
+        title: 'Paste, listen, carry on.',
+        body: 'The sentence being read is highlighted, with skip back and forward and a progress bar.',
+      },
+      {
+        image: rtstStep2,
+        title: 'From a photo or a file.',
+        body: 'Point the camera at a page or open a .txt, .pdf or .docx file.',
+      },
+      {
+        image: rtstStep3,
+        title: 'Your speed, your voice.',
+        body: 'Pick a speed from 0.5x to 2x, the voice and the language.',
+      },
+    ].map((step) => ({ ...step, alt: `${step.title} ${step.body}` })),
     stack: [
       '.NET 10',
       'C#',
@@ -193,7 +217,6 @@ export const products: Product[] = [
         url: 'https://apps.microsoft.com/detail/9NGT1BN1H92V',
         primary: true,
       },
-      { label: 'Android beta (APK)', url: RTST_SITE_DOWNLOAD },
       { label: 'Android beta on Google Play (testers)', url: RTST_PLAY_TESTING },
       { label: 'GitHub', url: RTST_REPO },
     ],
@@ -310,20 +333,20 @@ export const products: Product[] = [
     name: 'Dino Reader',
     tagline: 'A storybook reader for kids where every character has their own voice.',
     description:
-      'For ages 3 to 8. Scan a page, open a PDF or type a story, and Dino works out who is speaking and reads each character in their own voice, with a highlight that follows every sentence across the real page. No accounts, no ads, no tracking; stories and photos never leave the device.',
+      'For ages 3 to 8. Scan a page, open a PDF or type a story, and Dino works out who is speaking and reads each character in their own voice, with a highlight that follows every sentence across the real page. No accounts, no ads; stories and photos never leave the device.',
     url: 'https://dinoreader.sirous.uk/',
     displayUrl: 'dinoreader.sirous.uk',
     screenshot: dinoShot,
     screenshotAlt:
-      'Dino Reader in picture mode: an illustrated page of a bunny and a squirrel in a stadium with the spoken sentence highlighted and previous, play and next buttons.',
+      'Dino Reader on a phone: an illustrated page of The Gingerbread Man with a friendly fox, the spoken sentence highlighted, and previous, pause and next buttons.',
     panel: 'dino',
     audience: 'For ages 3 to 8',
     platforms: [
       {
         name: 'Android',
         status: 'testing',
-        note: 'Google Play internal testing, plus a direct download.',
-        url: 'https://dinoreader.sirous.uk/download/android/latest',
+        note: 'Beta on Google Play.',
+        url: DINO_PLAY_TESTING,
       },
       { name: 'iPhone and iPad', status: 'testing', note: 'Beta on TestFlight, open to anyone.', url: DINO_TESTFLIGHT },
       {
@@ -355,9 +378,27 @@ export const products: Product[] = [
       },
       {
         title: 'Offline and private',
-        body: 'Works offline after the voice pack download; nothing is collected.',
+        body: 'Works offline after the voice pack download. Only small anonymous counts are sent (no names, nothing a child types), and a grown-up can switch them off.',
       },
     ],
+    galleryTitle: 'Shelf, Store, Cast',
+    gallery: [
+      {
+        image: dinoStep1,
+        title: 'Their own shelf.',
+        body: 'Every book on the shelf, with its cover, ready to read.',
+      },
+      {
+        image: dinoStep2,
+        title: 'Free illustrated stories.',
+        body: 'Pick by age, download, and read offline.',
+      },
+      {
+        image: dinoStep3,
+        title: 'A voice for every character.',
+        body: 'See who speaks in a book and change any voice.',
+      },
+    ].map((step) => ({ ...step, alt: `${step.title} ${step.body}` })),
     stack: [
       '.NET MAUI',
       'C#',
@@ -367,7 +408,8 @@ export const products: Product[] = [
     ],
     links: [
       { label: 'dinoreader.sirous.uk', url: 'https://dinoreader.sirous.uk/', primary: true },
-      { label: 'Android download', url: 'https://dinoreader.sirous.uk/download/android/latest' },
+      { label: 'Android beta on Google Play', url: DINO_PLAY_TESTING },
+      { label: 'iPhone and iPad beta on TestFlight', url: DINO_TESTFLIGHT },
       { label: 'GitHub', url: RTST_REPO },
     ],
   },
