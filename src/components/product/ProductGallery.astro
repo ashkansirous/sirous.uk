@@ -20,7 +20,7 @@ function stepNumber(index: number): string {
 
 <section class="gallery">
   <SectionHeader title={title} label="/ steps" />
-  <div class="grid">
+  <div class="grid" style={`--cols: ${steps.length === 4 ? 4 : 3}`}>
     {
       steps.map((step, index) => (
         <article class="card">
@@ -37,7 +37,7 @@ function stepNumber(index: number): string {
 <style>
   .grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(var(--cols, 3), minmax(0, 1fr));
     gap: 16px;
   }
 

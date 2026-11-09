@@ -8,10 +8,11 @@
  */
 import rtstShot from '../assets/products/read-the-stupid-text.png';
 import lcmShot from '../assets/products/lets-call-mom.png';
-import dinoShot from '../assets/products/dino-reader.png';
+import dinoShot from '../assets/products/dino-reader.webp';
 import dinoStep1 from '../assets/products/dino-reader-step-1.webp';
 import dinoStep2 from '../assets/products/dino-reader-step-2.webp';
 import dinoStep3 from '../assets/products/dino-reader-step-3.webp';
+import dinoStep4 from '../assets/products/dino-reader-step-4.webp';
 import rtstStep1 from '../assets/products/read-the-stupid-text-step-1.webp';
 import rtstStep2 from '../assets/products/read-the-stupid-text-step-2.webp';
 import rtstStep3 from '../assets/products/read-the-stupid-text-step-3.webp';
@@ -331,18 +332,18 @@ export const products: Product[] = [
   {
     slug: 'dino-reader',
     index: '03',
-    status: 'testing',
-    name: 'Dino Reader',
-    tagline: 'A storybook reader for kids where every character has their own voice.',
+    status: 'live',
+    name: 'Dino Book Reader',
+    tagline: 'A picture-book reader for kids where every character has their own voice.',
     description:
-      'For ages 3 to 8. Scan a page, open a PDF or type a story, and Dino works out who is speaking and reads each character in their own voice, with a highlight that follows every sentence across the real page. No accounts, no ads; stories and photos never leave the device.',
+      'For ages 3 to 9. Pick illustrated stories from the free story store and each character is read in their own voice, with the sentence lighting up as it is read. Families can record their own voice for any character. Works offline once books are downloaded. No ads, no accounts.',
     url: 'https://dinoreader.sirous.uk/',
     displayUrl: 'dinoreader.sirous.uk',
     screenshot: dinoShot,
     screenshotAlt:
-      'Dino Reader on a phone: an illustrated page of The Gingerbread Man with a friendly fox, the spoken sentence highlighted, and previous, pause and next buttons.',
+      "Dino Book Reader on a phone: the kids' shelf with the illustrated covers of the books they have downloaded.",
     panel: 'dino',
-    audience: 'For ages 3 to 8',
+    audience: 'For ages 3 to 9',
     platforms: [
       {
         name: 'Android',
@@ -353,63 +354,69 @@ export const products: Product[] = [
       { name: 'iPhone and iPad', status: 'testing', note: 'Beta on TestFlight, open to anyone.', url: DINO_TESTFLIGHT },
       {
         name: 'Windows',
-        status: 'testing',
-        note: 'Packaged app built in CI (Store submission pending).',
+        status: 'live',
+        note: 'Live on the Microsoft Store.',
+        url: 'https://apps.microsoft.com/detail/9N9VHRLCZXN5',
       },
     ],
     features: [
       {
         title: 'A voice for every character',
-        body: 'A dialogue parser attributes each line to a speaker and a voice caster keeps that voice for the whole book; a grown-up picks the narrator; unknown speakers get the narrator.',
+        body: 'Every character speaks with its own pre-made voice.',
       },
       {
-        title: 'Picture mode and text mode',
-        body: 'The spoken sentence is highlighted on the real scanned page or PDF, or in a clean text view; pages turn with a swipe or the next button.',
+        title: 'Your family, in the story',
+        body: 'A grown-up can record their own voice for any character, in each language the story comes in.',
       },
       {
-        title: 'Story gallery and grown-up area',
-        body: 'A hold, then a sum to solve, opens the grown-up area to add stories by typing, pasting, opening a file, scanning pages or importing a PDF, and to edit or delete them.',
+        title: 'Picture, text or both',
+        body: 'Read with the picture only, the text only, or the picture and text together. The sentence lights up as it is read.',
       },
       {
-        title: 'Cast screen',
-        body: "Choose each character's voice, preview it, and merge two names that are the same character.",
+        title: 'Free story store',
+        body: 'Books come from the free story store. Behind the grown-ups’ gate sit Books, Store and Settings, plus backup and restore.',
       },
       {
-        title: 'Fourteen languages',
-        body: 'English, Farsi, French, Spanish, Portuguese, Chinese, Arabic, Russian, Japanese, Danish, Finnish, Swedish, Norwegian and Dutch, with right-to-left layout for Farsi and Arabic; the same on-device neural voices and OCR as Read The Stupid Text.',
+        title: 'Fifteen languages',
+        body: 'English, Arabic, Danish, German, Spanish, Persian (Farsi), Finnish, French, Japanese, Norwegian, Dutch, Portuguese, Russian, Swedish and Chinese.',
       },
       {
-        title: 'Offline and private',
-        body: 'Works offline after the voice pack download. Only small anonymous counts are sent (no names, nothing a child types), and a grown-up can switch them off.',
+        title: 'Offline, no ads, no accounts',
+        body: 'Works offline once books are downloaded. No ads and no accounts.',
       },
     ],
-    galleryTitle: 'Shelf, Store, Cast',
+    galleryTitle: 'A look inside',
     gallery: [
       {
         image: dinoStep1,
-        title: 'Their own shelf.',
-        body: 'Every book on the shelf, with its cover, ready to read.',
+        title: 'Reading, picture and text.',
+        body: 'The sentence being read lights up on a text card over the bottom of the picture.',
       },
       {
         image: dinoStep2,
-        title: 'Free illustrated stories.',
-        body: 'Pick by age, download, and read offline.',
+        title: 'The free story store.',
+        body: 'Browse books by age and add them to your shelf.',
       },
       {
         image: dinoStep3,
-        title: 'A voice for every character.',
-        body: 'See who speaks in a book and change any voice.',
+        title: 'Record a character.',
+        body: 'A grown-up records the family voice for a character, per language.',
+      },
+      {
+        image: dinoStep4,
+        title: 'Picture-only pages.',
+        body: 'Let the picture tell the story while the voices read.',
       },
     ].map((step) => ({ ...step, alt: `${step.title} ${step.body}` })),
     stack: [
-      '.NET MAUI',
-      'C#',
-      'DinoReader.Core dialogue library (segmenter, speaker attributor, voice caster, pagination)',
-      'Shared platform code with Read The Stupid Text (sherpa-onnx voices, ML Kit / PaddleOCR, PDF extraction)',
-      'One release pipeline for both products',
+      '.NET MAUI app on Android, iOS and Windows',
+      'Pre-made voice clips for every character',
+      'Stories served from our own Cloudflare Worker',
+      'Optional anonymous usage counts, which a grown-up can switch off in Settings',
     ],
     links: [
       { label: 'dinoreader.sirous.uk', url: 'https://dinoreader.sirous.uk/', primary: true },
+      { label: 'Windows: Microsoft Store', url: 'https://apps.microsoft.com/detail/9N9VHRLCZXN5' },
       { label: 'Android beta: 1. join the testers group', url: TESTERS_GROUP },
       { label: 'Android beta: 2. Google Play', url: DINO_PLAY_TESTING },
       { label: 'iPhone and iPad beta on TestFlight', url: DINO_TESTFLIGHT },
