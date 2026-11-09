@@ -334,9 +334,10 @@ export const products: Product[] = [
     index: '03',
     status: 'live',
     name: 'Dino Book Reader',
-    tagline: 'A picture-book reader for kids where every character has their own voice.',
+    tagline:
+      'Picture books read aloud with a voice for every character, or your own.',
     description:
-      'For ages 3 to 9. Pick illustrated stories from the free story store and each character is read in their own voice, with the sentence lighting up as it is read. Families can record their own voice for any character. Works offline once books are downloaded. No ads, no accounts.',
+      'For ages 3 to 9. Pick illustrated stories from the free story store and each character is read in their own voice, with the sentence lighting up as it is read. A grown-up can record their own voice for any character in a story, so the child hears family as the wolf or the gingerbread man. Recordings are kept on the device, and in a backup only if a grown-up makes one. Works offline once books are downloaded. No ads, no accounts.',
     url: 'https://dinoreader.sirous.uk/',
     displayUrl: 'dinoreader.sirous.uk',
     screenshot: dinoShot,
@@ -361,12 +362,12 @@ export const products: Product[] = [
     ],
     features: [
       {
-        title: 'A voice for every character',
-        body: 'Every character speaks with its own pre-made voice.',
+        title: 'Your family, in the story',
+        body: 'A grown-up can record their own voice for any character, in each of the family’s story languages. Recordings are kept on the device, and in a backup only if a grown-up makes one.',
       },
       {
-        title: 'Your family, in the story',
-        body: 'A grown-up can record their own voice for any character, in each language the story comes in.',
+        title: 'A voice for every character',
+        body: 'Every character speaks with its own pre-made voice.',
       },
       {
         title: 'Picture, text or both',
