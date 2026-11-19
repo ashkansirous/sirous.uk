@@ -6,4 +6,8 @@ export default defineConfig({
   // Custom apex domain served via GitHub Pages (public/CNAME holds `sirous.uk`).
   // No `base` is set: the site lives at the domain root, not a /repo subpath.
   site: 'https://sirous.uk',
+  // Static build, no adapter: this emits a meta-refresh page at /dinoreader/.
+  redirects: {
+    '/dinoreader': '/dino-reader/',
+  },
 });

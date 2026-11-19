@@ -97,11 +97,11 @@ export interface ReservedSlot {
 }
 
 const RTST_REPO = 'https://github.com/ashkansirous/ReadTheStupidText';
-const RTST_PLAY_TESTING = 'https://play.google.com/apps/testing/uk.sirous.readthestupidtext';
+const RTST_PLAY = 'https://play.google.com/store/apps/details?id=uk.sirous.readthestupidtext';
 const RTST_TESTFLIGHT = 'https://testflight.apple.com/join/NSeUK2h8';
-const TESTERS_GROUP = 'https://groups.google.com/g/sirous-app-testers';
-const DINO_PLAY_TESTING = 'https://play.google.com/apps/testing/uk.sirous.dinoreader';
-const DINO_TESTFLIGHT = 'https://testflight.apple.com/join/WnF7M53D';
+const DINO_PLAY = 'https://play.google.com/store/apps/details?id=uk.sirous.dinoreader';
+const DINO_APP_STORE = 'https://apps.apple.com/app/id6825053435';
+const DINO_MICROSOFT_STORE = 'https://apps.microsoft.com/detail/9N9VHRLCZXN5';
 const BOOK_REPO = 'https://github.com/ashkansirous/print-the-damn-book';
 const BOOK_SITE = 'https://print-the-damn-book.sirous.uk/';
 const BOOK_DOWNLOAD = `${BOOK_REPO}/releases/latest/download/PrintTheDamnBook.exe`;
@@ -114,7 +114,7 @@ export const products: Product[] = [
     name: 'Read The Stupid Text',
     tagline: 'Reads any text aloud in a natural voice, offline, at your speed.',
     description:
-      'Select or copy text, press Ctrl+Win+R, or open a file, and it reads it aloud in a natural on-device neural voice at any speed from 0.5x to 2x. A Windows tray app on the Microsoft Store, with Android and iPhone apps (both in beta) that read a page straight from the camera. Nothing you read leaves the device.',
+      'Select or copy text, press Ctrl+Win+R, or open a file, and it reads it aloud in a natural on-device neural voice at any speed from 0.5x to 2x. A Windows tray app on the Microsoft Store, with an Android app on Google Play and an iPhone app (in beta) that read a page straight from the camera. Nothing you read leaves the device.',
     url: 'https://readthestupidtext.sirous.uk/',
     displayUrl: 'readthestupidtext.sirous.uk',
     screenshot: rtstShot,
@@ -132,9 +132,9 @@ export const products: Product[] = [
       },
       {
         name: 'Android',
-        status: 'testing',
-        note: 'Beta on Google Play: join the testers group, then open the Play link.',
-        url: RTST_PLAY_TESTING,
+        status: 'live',
+        note: 'Live on Google Play.',
+        url: RTST_PLAY,
       },
       {
         name: 'iPhone and iPad',
@@ -219,8 +219,7 @@ export const products: Product[] = [
         url: 'https://apps.microsoft.com/detail/9NGT1BN1H92V',
         primary: true,
       },
-      { label: 'Android beta: 1. join the testers group', url: TESTERS_GROUP },
-      { label: 'Android beta: 2. Google Play', url: RTST_PLAY_TESTING },
+      { label: 'Google Play', url: RTST_PLAY },
       { label: 'GitHub', url: RTST_REPO },
     ],
   },
@@ -333,7 +332,7 @@ export const products: Product[] = [
     slug: 'dino-reader',
     index: '03',
     status: 'live',
-    name: 'Dino Book Reader',
+    name: 'Dino: Kids Books & Stories',
     tagline:
       'Picture books read aloud with a voice for every character, or your own.',
     description:
@@ -342,22 +341,17 @@ export const products: Product[] = [
     displayUrl: 'dinoreader.sirous.uk',
     screenshot: dinoShot,
     screenshotAlt:
-      "Dino Book Reader on a phone: the kids' shelf with the illustrated covers of the books they have downloaded.",
+      "Dino: Kids Books & Stories on a phone: the kids' shelf, My stories, with the illustrated covers of four books.",
     panel: 'dino',
     audience: 'For ages 3 to 9',
     platforms: [
-      {
-        name: 'Android',
-        status: 'testing',
-        note: 'Beta on Google Play: join the testers group, then open the Play link.',
-        url: DINO_PLAY_TESTING,
-      },
-      { name: 'iPhone and iPad', status: 'testing', note: 'Beta on TestFlight, open to anyone.', url: DINO_TESTFLIGHT },
+      { name: 'Android', status: 'live', note: 'Live on Google Play.', url: DINO_PLAY },
+      { name: 'iPhone and iPad', status: 'live', note: 'Live on the App Store.', url: DINO_APP_STORE },
       {
         name: 'Windows',
         status: 'live',
         note: 'Live on the Microsoft Store.',
-        url: 'https://apps.microsoft.com/detail/9N9VHRLCZXN5',
+        url: DINO_MICROSOFT_STORE,
       },
     ],
     features: [
@@ -379,7 +373,7 @@ export const products: Product[] = [
       },
       {
         title: 'Fifteen languages',
-        body: 'English, Arabic, Danish, German, Spanish, Persian (Farsi), Finnish, French, Japanese, Norwegian, Dutch, Portuguese, Russian, Swedish and Chinese.',
+        body: 'English, Chinese, Spanish, Arabic, French, Portuguese, Russian, German, Japanese, Persian (Farsi), Dutch, Swedish, Danish, Finnish and Norwegian.',
       },
       {
         title: 'Offline, no ads, no accounts',
@@ -395,18 +389,18 @@ export const products: Product[] = [
       },
       {
         image: dinoStep2,
-        title: 'The free story store.',
-        body: 'Browse books by age and add them to your shelf.',
+        title: 'Record a character.',
+        body: 'A grown-up records the family voice for a character, one at a time or whole pages. The recording stays on the phone.',
       },
       {
         image: dinoStep3,
-        title: 'Record a character.',
-        body: 'A grown-up records the family voice for a character, per language.',
+        title: 'Your language.',
+        body: 'Read the same story in any of fifteen languages; here it is in Farsi, read right to left.',
       },
       {
         image: dinoStep4,
-        title: 'Picture-only pages.',
-        body: 'Let the picture tell the story while the voices read.',
+        title: 'The grown-ups’ corner.',
+        body: 'Books, Store and Settings sit behind the grown-ups’ gate; the child’s shelf is one tap away.',
       },
     ].map((step) => ({ ...step, alt: `${step.title} ${step.body}` })),
     stack: [
@@ -417,10 +411,9 @@ export const products: Product[] = [
     ],
     links: [
       { label: 'dinoreader.sirous.uk', url: 'https://dinoreader.sirous.uk/', primary: true },
-      { label: 'Windows: Microsoft Store', url: 'https://apps.microsoft.com/detail/9N9VHRLCZXN5' },
-      { label: 'Android beta: 1. join the testers group', url: TESTERS_GROUP },
-      { label: 'Android beta: 2. Google Play', url: DINO_PLAY_TESTING },
-      { label: 'iPhone and iPad beta on TestFlight', url: DINO_TESTFLIGHT },
+      { label: 'Google Play', url: DINO_PLAY },
+      { label: 'App Store', url: DINO_APP_STORE },
+      { label: 'Microsoft Store', url: DINO_MICROSOFT_STORE },
       { label: 'GitHub', url: RTST_REPO },
     ],
   },
