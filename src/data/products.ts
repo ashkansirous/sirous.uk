@@ -341,7 +341,7 @@ export const products: Product[] = [
     displayUrl: 'dinoreader.sirous.uk',
     screenshot: dinoShot,
     screenshotAlt:
-      "Dino: Kids Books & Stories on a phone: the kids' shelf, My stories, with the illustrated covers of four books.",
+      "Dino: Kids Books & Stories on a phone: the kids' shelf, My stories, with illustrated story covers to choose from.",
     panel: 'dino',
     audience: 'For ages 3 to 9',
     platforms: [
@@ -395,7 +395,7 @@ export const products: Product[] = [
       {
         image: dinoStep3,
         title: 'Your language.',
-        body: 'Read the same story in any of fifteen languages; here it is in Farsi, read right to left.',
+        body: 'Read the same story in any of fifteen languages; here is the same story in German.',
       },
       {
         image: dinoStep4,
