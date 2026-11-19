@@ -1,7 +1,7 @@
 # sirous.uk
 
 The portal / landing page for the software [Ashkan Sirous](https://ashkan.sirous.uk) builds.
-Four products today: **Read The Stupid Text** and **Lets Call Mom** are live, **Dino Book Reader** is live on the Microsoft Store for Windows (Android and iPhone in testing) and
+Four products today: **Read The Stupid Text** and **Lets Call Mom** are live, **Dino: Kids Books & Stories** is live on Google Play, the App Store and the Microsoft Store, and
 **Print the Damn Book** is in testing. Each has its own page at `/<slug>/`; screenshots live in `src/assets/products/`.
 
 Built with [Astro](https://astro.build) (static output) — plain HTML + scoped CSS, no UI
